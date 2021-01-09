@@ -1,0 +1,1 @@
+``SpringBoot Docker NGINX`` is a simple SpringBoot app that uses the [NGINX](https://www.nginx.com/) as load balancer.

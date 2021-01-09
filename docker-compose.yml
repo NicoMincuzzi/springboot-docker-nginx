@@ -1,0 +1,29 @@
+version: '3'
+services:
+  load-balancer:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: load-balancer
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "9090:9090"
+  service1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+  service2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+  service3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8080"
