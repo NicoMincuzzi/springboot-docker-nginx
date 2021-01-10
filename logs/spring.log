@@ -1,0 +1,15 @@
+2021-01-10 18:22:11.279  INFO 2482 --- [main] .n.SpringbootDockerNginxApplicationTests : Starting SpringbootDockerNginxApplicationTests on MBP-di-Nicola.home with PID 2482 (started by nicola in /Users/nicola/Nicola/projects/github/springboot-docker-nginx)
+2021-01-10 18:22:11.284  INFO 2482 --- [main] .n.SpringbootDockerNginxApplicationTests : No active profile set, falling back to default profiles: default
+2021-01-10 18:22:14.769  INFO 2482 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-10 18:22:15.851  INFO 2482 --- [main] .n.SpringbootDockerNginxApplicationTests : Started SpringbootDockerNginxApplicationTests in 5.764 seconds (JVM running for 8.8)
+2021-01-10 18:22:16.551  INFO 2482 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-10 18:35:48.567  INFO 3902 --- [main] .n.SpringbootDockerNginxApplicationTests : Starting SpringbootDockerNginxApplicationTests on MBP-di-Nicola.home with PID 3902 (started by nicola in /Users/nicola/Nicola/projects/github/springboot-docker-nginx)
+2021-01-10 18:35:48.576  INFO 3902 --- [main] .n.SpringbootDockerNginxApplicationTests : No active profile set, falling back to default profiles: default
+2021-01-10 18:35:50.250  INFO 3902 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-10 18:35:50.753  INFO 3902 --- [main] .n.SpringbootDockerNginxApplicationTests : Started SpringbootDockerNginxApplicationTests in 2.754 seconds (JVM running for 4.269)
+2021-01-10 18:35:51.105  INFO 3902 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-10 18:46:06.405  INFO 4999 --- [main] .n.SpringbootDockerNginxApplicationTests : Starting SpringbootDockerNginxApplicationTests on MBP-di-Nicola.home with PID 4999 (started by nicola in /Users/nicola/Nicola/projects/github/springboot-docker-nginx)
+2021-01-10 18:46:06.408  INFO 4999 --- [main] .n.SpringbootDockerNginxApplicationTests : No active profile set, falling back to default profiles: default
+2021-01-10 18:46:08.143  INFO 4999 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-10 18:46:08.618  INFO 4999 --- [main] .n.SpringbootDockerNginxApplicationTests : Started SpringbootDockerNginxApplicationTests in 2.796 seconds (JVM running for 4.31)
+2021-01-10 18:46:08.998  INFO 4999 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
