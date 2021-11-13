@@ -5,17 +5,17 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.1.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>2.5.6</version>
+		<relativePath/>
 	</parent>
-	<groupId>com.nmincuzzi</groupId>
+	<groupId>com.github.nicomincuzzi</groupId>
 	<artifactId>springboot-docker-nginx</artifactId>
-	<version>1.0.0</version>
+	<version>0.1.0</version>
 	<name>springboot-docker-nginx</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>11</java.version>
 	</properties>
 
 	<dependencies>
@@ -50,5 +50,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

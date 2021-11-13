@@ -1,14 +1,15 @@
 package com.nmincuzzi.service;
 
-import com.nmincuzzi.exception.DummyBadRequestException;
+import com.nmincuzzi.controller.BadRequestException;
+import com.nmincuzzi.controller.NotFoundException;
 import com.nmincuzzi.model.DummyModel;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
+import static java.util.UUID.randomUUID;
+import static org.springframework.http.HttpStatus.OK;
 
 @Slf4j
 @Service
@@ -18,26 +19,28 @@ public class DummyService {
 
     public DummyModel retrieveDummyInfo() {
         logger.info("Retrieve dummy info by Service.");
-        DummyModel dummyModel = DummyModel.of();
-        dummyModel.setId(UUID.randomUUID().toString());
-        dummyModel.setCode(HttpStatus.OK.value());
-        dummyModel.setMessage(HttpStatus.OK.name());
-        return dummyModel;
+        return new DummyModel(randomUUID().toString(), "John", OK.value(), OK.name());
     }
 
     public DummyModel retrieveDummyInfoById(String id) {
-        DummyModel dummyModel = DummyModel.of();
-        if(id != null && !id.isEmpty()){
-            dummyModel.setId(id);
-        }else{
-            dummyModel.setId(UUID.randomUUID().toString());
+        if (id == null || id.isEmpty()) {
+            id = randomUUID().toString();
         }
-        dummyModel.setCode(HttpStatus.OK.value());
-        dummyModel.setMessage(HttpStatus.OK.name());
-        return dummyModel;
+        return new DummyModel(id, "John", OK.value(), OK.name());
     }
 
-    public void throwDummyBadRequest() throws DummyBadRequestException {
-        throw new DummyBadRequestException();
+    public DummyModel retrieveDummyInfoByIdAndName(String id, String name) {
+        if (id == null || id.isEmpty()) {
+            id = randomUUID().toString();
+        }
+        if (!name.equals("Jack")) {
+            throw new NotFoundException("The user ".concat(name).concat(" is not presented!"));
+        }
+
+        return new DummyModel(id, "Jack", OK.value(), OK.name());
+    }
+
+    public void throwDummyBadRequest() throws BadRequestException {
+        throw new BadRequestException();
     }
 }
