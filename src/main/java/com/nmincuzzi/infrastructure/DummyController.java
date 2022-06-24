@@ -11,7 +11,7 @@ import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequestMapping("/dummy")
+@RequestMapping(value = "/dummy", produces = APPLICATION_JSON_VALUE)
 public class DummyController {
     private final GetDummy getDummy;
 
@@ -19,12 +19,12 @@ public class DummyController {
         this.getDummy = getDummy;
     }
 
-    @GetMapping(value = "/success", produces = APPLICATION_JSON_VALUE)
+    @GetMapping("/success")
     public ResponseEntity<Dummy> dummySuccess() {
         return ResponseEntity.status(OK).body(getDummy.apply());
     }
 
-    @GetMapping(value = "/badrequest", produces = APPLICATION_JSON_VALUE)
+    @GetMapping("/badrequest")
     public void dummyBadRequest() {
         try {
             getDummy.throwDummyBadRequest();
