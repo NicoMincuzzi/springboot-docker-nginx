@@ -1,0 +1,11 @@
+.dockerignore
+logs
+Dockerfile
+.git
+.gitignore
+.idea
+.mvn
+nginx
+docker-compose.yml
+README.md
+*.iml
