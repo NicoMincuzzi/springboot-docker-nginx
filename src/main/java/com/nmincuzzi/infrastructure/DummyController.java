@@ -1,7 +1,7 @@
-package com.nmincuzzi.controller;
+package com.nmincuzzi.infrastructure;
 
-import com.nmincuzzi.model.DummyModel;
-import com.nmincuzzi.service.DummyService;
+import com.nmincuzzi.domain.Dummy;
+import com.nmincuzzi.usecase.GetDummy;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -11,33 +11,33 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @RequestMapping("/dummy")
 class DummyController {
-    private final DummyService dummyService;
+    private final GetDummy getDummy;
 
-    DummyController(DummyService dummyService) {
-        this.dummyService = dummyService;
+    DummyController(GetDummy getDummy) {
+        this.getDummy = getDummy;
     }
 
     @GetMapping(value = "/success", produces = APPLICATION_JSON_VALUE)
-    public DummyModel dummySuccess() {
-        return dummyService.retrieveDummyInfo();
+    public Dummy dummySuccess() {
+        return getDummy.apply();
     }
 
     @GetMapping("/badrequest")
     public void dummyBadRequest() {
         try {
-            dummyService.throwDummyBadRequest();
+            getDummy.throwDummyBadRequest();
         } catch (BadRequestException e) {
             throw new ResponseStatusException(BAD_REQUEST, "Dummy Bad Request", e);
         }
     }
 
     @GetMapping("/notfound/{id}")
-    public DummyModel dummyNotFoundByNameFilter(@PathVariable String id, @RequestParam String name) {
-        return dummyService.retrieveDummyInfoByIdAndName(id, name);
+    public Dummy dummyNotFoundByNameFilter(@PathVariable String id, @RequestParam String name) {
+        return getDummy.applyBy(id, name);
     }
 
     @GetMapping(value = {"/optional", "/optional/{id}"}, produces = APPLICATION_JSON_VALUE)
-    public DummyModel getFooByOptionalId(@PathVariable(required = false) String id) {
-        return dummyService.retrieveDummyInfoById(id);
+    public Dummy getFooByOptionalId(@PathVariable(required = false) String id) {
+        return getDummy.applyBy(id);
     }
 }

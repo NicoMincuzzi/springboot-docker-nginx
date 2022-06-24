@@ -1,4 +1,4 @@
-package com.nmincuzzi.controller;
+package com.nmincuzzi.infrastructure;
 
 public class BadRequestException extends Exception {
     public BadRequestException() {

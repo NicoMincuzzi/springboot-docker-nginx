@@ -1,4 +1,4 @@
-package com.nmincuzzi.controller;
+package com.nmincuzzi.infrastructure;
 
 import org.springframework.web.bind.annotation.ResponseStatus;
 

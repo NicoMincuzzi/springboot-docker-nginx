@@ -1,14 +1,14 @@
-package com.nmincuzzi.model;
+package com.nmincuzzi.domain;
 
 import java.util.Objects;
 
-public class DummyModel {
+public class Dummy {
     private final String id;
     private final String name;
     private final Integer code;
     private final String message;
 
-    public DummyModel(String id, String name, Integer code, String message) {
+    public Dummy(String id, String name, Integer code, String message) {
         this.id = id;
         this.name = name;
         this.code = code;
@@ -19,7 +19,7 @@ public class DummyModel {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DummyModel that = (DummyModel) o;
+        Dummy that = (Dummy) o;
         return Objects.equals(id, that.id);
     }
 
