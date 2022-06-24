@@ -2,15 +2,17 @@ package com.nmincuzzi.infrastructure;
 
 import com.nmincuzzi.domain.Dummy;
 import com.nmincuzzi.usecase.GetDummy;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequestMapping("/dummy")
-class DummyController {
+public class DummyController {
     private final GetDummy getDummy;
 
     DummyController(GetDummy getDummy) {
@@ -18,11 +20,11 @@ class DummyController {
     }
 
     @GetMapping(value = "/success", produces = APPLICATION_JSON_VALUE)
-    public Dummy dummySuccess() {
-        return getDummy.apply();
+    public ResponseEntity<Dummy> dummySuccess() {
+        return ResponseEntity.status(OK).body(getDummy.apply());
     }
 
-    @GetMapping("/badrequest")
+    @GetMapping(value = "/badrequest", produces = APPLICATION_JSON_VALUE)
     public void dummyBadRequest() {
         try {
             getDummy.throwDummyBadRequest();
