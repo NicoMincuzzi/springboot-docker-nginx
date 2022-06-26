@@ -3,6 +3,12 @@
 ## Load Balancer
 A type of ***reverse proxy*** that distributes traffic across servers. Load balancers can be found in many parts of a system, from the DNS layer all the way to the database layer.
 
+Load balancers are effective at:
+
+- Preventing requests from going to unhealthy servers
+- Preventing overloading resources
+- Helping eliminate single points of failure
+
 ### Server-Selection Strategy
 How a **load balancer** chooses servers when distributing traffic amongst multiple servers. 
 
