@@ -1,4 +1,4 @@
-``SpringBoot Docker NGINX`` is a simple Java applcation that uses the [NGINX](https://www.nginx.com/) as load balancer.
+A simple Java applcation that uses the [NGINX](https://www.nginx.com/) as load balancer.
 
 ## Load Balancer
 A type of ***reverse proxy*** that distributes traffic across servers. Load balancers can be found in many parts of a system, from the DNS layer all the way to the database layer.
