@@ -31,3 +31,9 @@ When distributing a workload across a set of servers, that workload might be spr
  Nginx is a very popular webserver that's often used as a <b>reverse proxy</b> and <b>load balancer</b>.
 
 Learn more: https://www.nginx.com/
+
+## Contributing
+
+Everyone is very welcome to contribute to this project.
+You can contribute just by submitting bugs or suggesting improvements by
+[opening an issue on GitHub](https://github.com/NicoMincuzzi/springboot-docker-nginx/issues).
