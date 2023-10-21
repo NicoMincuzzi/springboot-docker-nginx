@@ -58,9 +58,11 @@ After recompiling and restarting the application, you will see the metrics on ht
 ### Putting the OpenTelemetry collector in the middle
 The OpenTelemetry collector is a component to receive, process, and export telemetry data. It usually sits in the middle, between the applications to be monitored and the monitoring backend.
 
+![spring-boot-opentelemetry-collector-architecture](https://github.com/NicoMincuzzi/springboot-docker-nginx/assets/48289901/ea6f3003-1a8e-4106-aa1e-8255531a0a1a)
 
 As the next step, we will configure an OpenTelemetry collector to scrape the metrics from the Prometheus endpoint and expose them in Prometheus format.
 
+![spring-boot-opentelemetry-collector-scrape-metrics](https://github.com/NicoMincuzzi/springboot-docker-nginx/assets/48289901/ed3403c1-ef73-48cc-a946-ba581e9b9b1b)
 
 So far this will not add any functionality, except that we get the OpenTelemetry collector as a new infrastructure component. The metrics exposed by the collector on port 8889 should be the same as the metrics exposed by the application on port 8080.
 
