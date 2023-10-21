@@ -1,0 +1,23 @@
+receivers:
+  prometheus:
+    config:
+      scrape_configs:
+        - job_name: "example"
+          scrape_interval: 5s
+          metrics_path: '/actuator/prometheus'
+          static_configs:
+            - targets: ["host.docker.internal:8080"] #https://docs.docker.com/desktop/networking/#i-want-to-connect-from-a-container-to-a-service-on-the-host
+
+processors:
+  batch:
+
+exporters:
+  prometheus:
+    endpoint: "0.0.0.0:8889"
+
+service:
+  pipelines:
+    metrics:
+      receivers: [prometheus]
+      processors: [batch]
+      exporters: [prometheus]

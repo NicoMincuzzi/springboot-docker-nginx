@@ -1,5 +1,24 @@
 version: '3'
 services:
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.87.0
+    deploy:
+      resources:
+        limits:
+          memory: 125M
+    restart: unless-stopped
+    command: [ "--config=/etc/otelcol-contrib/config.yaml" ]
+    volumes:
+      - ./otel-collector/config.yaml:/etc/otelcol-contrib/config.yaml
+    ports:
+      - "1888:1888" # pprof extension
+      - "8888:8888" # Prometheus metrics exposed by the collector
+      - "8889:8889" # Prometheus exporter metrics
+      - "13133:13133" # health_check extension
+      - "4317:4317" # OTLP gRPC receiver
+      - "4318:4318" # OTLP http receiver
+      - "55679:55679" # zpages extension
+
   load-balancer:
     build:
       context: ./nginx
