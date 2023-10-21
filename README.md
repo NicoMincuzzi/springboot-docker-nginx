@@ -66,3 +66,45 @@ As the next step, we will configure an OpenTelemetry collector to scrape the met
 
 So far this will not add any functionality, except that we get the OpenTelemetry collector as a new infrastructure component. The metrics exposed by the collector on port 8889 should be the same as the metrics exposed by the application on port 8080.
 
+#### Prometheus
+
+Prometheus is an open source monitoring system of the Cloud Native Computing Foundation. Since you have an endpoint in your application which provides the metrics for Prometheus, you can now configure Prometheus to monitor your application.
+
+There are several ways to install Prometheus as described in the installation section of the Prometheus documentation. You will run Prometheus inside a Docker container.
+
+You need to create a configuration prometheus.yml file with a basic configuration to add to the Docker container. The minimal properties are:
+
+- `scrape_interval`: how often Prometheus polls the metrics endpoint of your application
+- `job_name`: just a name for the polling job
+- `metrics_path`: the path to the URL where the metrics can be accessed
+- `targets`: the hostname and port number. Replace HOST with the IP address of your host machine
+
+```yaml
+global:
+  scrape_interval:     120s
+  evaluation_interval: 120s
+  external_labels:
+    monitor: 'my-project'
+scrape_configs:
+  - job_name: 'prometheus'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['docker.for.mac.localhost:9090','cadvisor:8080','node-exporter:9100']
+
+  - job_name: 'dummy_app'
+    scrape_interval: 5s
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['docker.for.mac.localhost:8081']
+```
+
+The `scrape_interval` option indicates how often Prometheus contacts the `targets` to obtain the metrics.
+
+With the `scrap_configs` option, on the other hand, you configure the Prometheus job list,
+each of which has a `target` list from which to retrieve the metrics (for the example there will be only the timer_1 service
+which exposes the metrics on port 4000). By default, [Prometheus] tries to contact the route `/metrics`.
+
+A job can have the explicit list of targets to contact (and therefore all the services you want to monitor will have to be mapped by hand) or
+the address of a service discovery which provides the list of targets. In the second it is also possible to define rules to filter only the services that you really want to monitor, ignoring those that are not of interest.
+
+For a complete specification of configuration options, see the [configuration documentation](https://prometheus.io/docs/prometheus/latest/configuration/configuration/).
