@@ -108,3 +108,12 @@ A job can have the explicit list of targets to contact (and therefore all the se
 the address of a service discovery which provides the list of targets. In the second it is also possible to define rules to filter only the services that you really want to monitor, ignoring those that are not of interest.
 
 For a complete specification of configuration options, see the [configuration documentation](https://prometheus.io/docs/prometheus/latest/configuration/configuration/).
+
+Loki
+Loki is their open source project inspired by Prometheus, a scalable, highly available, multi-tenant log aggregation system.
+
+- Promtail is the log collector that collects the application’s logs and sends them to Loki.
+- Loki is used for log storage and parsing, and provides a query API for downstream presentation.
+- Grafana is responsible for visualizing Loki’s logs.
+
+![8e8fb9cb96d34b3b84b01db193c778cb](https://github.com/NicoMincuzzi/springboot-docker-nginx/assets/48289901/30c6ba1b-2461-40d9-85f7-83b2e25faa72)
