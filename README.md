@@ -110,6 +110,7 @@ the address of a service discovery which provides the list of targets. In the se
 For a complete specification of configuration options, see the [configuration documentation](https://prometheus.io/docs/prometheus/latest/configuration/configuration/).
 
 Loki
+
 Loki is their open source project inspired by Prometheus, a scalable, highly available, multi-tenant log aggregation system.
 
 - Promtail is the log collector that collects the application’s logs and sends them to Loki.
@@ -117,3 +118,6 @@ Loki is their open source project inspired by Prometheus, a scalable, highly ava
 - Grafana is responsible for visualizing Loki’s logs.
 
 ![8e8fb9cb96d34b3b84b01db193c778cb](https://github.com/NicoMincuzzi/springboot-docker-nginx/assets/48289901/30c6ba1b-2461-40d9-85f7-83b2e25faa72)
+
+
+Promtail is an open-source log shipper and tailer that is part of the Grafana Loki project, which is designed for collecting, processing, and storing log data. Promtail is primarily used for aggregating logs from various sources, parsing them, and forwarding them to a centralized log storage system, like Loki.
