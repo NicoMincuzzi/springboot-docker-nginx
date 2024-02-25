@@ -1,15 +1,24 @@
-FROM maven:3.8.6-openjdk-11-slim@sha256:bed43e35f3e5f013670d4d7d247612de5ac82355b0c58c244005c532dfe6a1d7 AS build
-RUN mkdir /project
-COPY . /project
-WORKDIR /project
+# Stage 1: Build the application
+FROM maven:3.8.6-amazoncorretto-11@sha256:ea3950751ee0bb51032bc420bb9f54c83a7e72bafec61f5cf7f7b72b5b5699fe AS build
+WORKDIR /app
+COPY pom.xml .
+COPY src src
 RUN mvn clean package -DskipTests
 
-FROM openjdk:11-jre-slim@sha256:0d6cfc233809ed5cfa1fca13059ea36af58916a72799fb21c9ecebe7802bbddd
-RUN mkdir /app
-RUN addgroup --system --gid 1001 appuser && adduser  --system --uid  1001 --group appuser
-COPY --from=build /project/target/dummy-app-0.1.0.jar /app/dummy-app-0.1.0.jar
-WORKDIR /app
-RUN chown -R appuser:appuser /app
-USER appuser
+# Stage 2: Create a smaller runtime image
+FROM amazoncorretto:11-alpine-jdk@sha256:1a24347f430decabc6ecdb1cb5175cd9f70c1de7d36b2c902d904ba66fb70cba
+WORKDIR /opt/dummy_app
+# set user/group IDs
+RUN addgroup -S -g 1001 dummy-app && adduser -S -h /home/dummy_app -u 1001 dummy-app -G dummy-app
+RUN chown -R dummy-app:dummy-app /opt/dummy_app
+USER dummy-app
+
+COPY --from=build /app/target/dummy-app.jar /opt/dummy_app/dummy-app.jar
+
+HEALTHCHECK --interval=5s \
+            --timeout=3s \
+            CMD curl -f http://localhost:8080/actuator/health || exit 1
+
 EXPOSE 8080
-CMD ["java", "-jar", "dummy-app-0.1.0.jar"]
+
+CMD ["java", "-Duser.timezone=UTC -Dfile.encoding=UTF-8","-jar", "DummyApp.jar"]

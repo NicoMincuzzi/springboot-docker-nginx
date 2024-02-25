@@ -39,7 +39,9 @@
 		</dependency>
 	</dependencies>
 
+	<packaging>jar</packaging>
 	<build>
+		<finalName>dummy-app</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
